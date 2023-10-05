@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Hubspot Integration",
+  "version": "1.0",
+  "description": "hubspot integration with chatbot",
+  "content_scripts": [
+    {
+      "matches": ["*://app.hubspot.com/live-messages/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "permissions": ["activeTab"],
+  "host_permissions": ["*://*/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "insert_text": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Run \"foo\" on the current page."
+    }
+  }
+}
