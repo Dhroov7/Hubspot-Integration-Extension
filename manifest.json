@@ -9,8 +9,8 @@
       "js": ["content.js"]
     }
   ],
-  "permissions": ["activeTab"],
-  "host_permissions": ["*://*/*"],
+  "permissions": ["activeTab", "tabs"],
+  "host_permissions": ["https://theogbrand-testing--serverless-message-sender-fastapi-app.modal.run/*"],
   "background": {
     "service_worker": "background.js"
   },
