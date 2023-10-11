@@ -10,7 +10,7 @@
     }
   ],
   "permissions": ["activeTab", "tabs"],
-  "host_permissions": ["https://theogbrand-testing--serverless-message-sender-fastapi-app.modal.run/*"],
+  "host_permissions": ["https://remarkable-functional-church.glitch.me/get-response/*"],
   "background": {
     "service_worker": "background.js"
   },

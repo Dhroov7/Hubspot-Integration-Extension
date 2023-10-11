@@ -20,34 +20,27 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 
 async function addTextIntoBox() {
   const textBox = document.querySelectorAll(".ProseMirror")[0];
-  const result = await getBotResponse();
+  const textMessageDom = document.querySelectorAll("[class*='SanitizedText__StyledText']");
+  const textMessage = textMessageDom[textMessageDom.length - 1]?.innerText;
+  const result = await getBotResponse(textMessage);
   if (textBox) {
     const p = textBox.getElementsByTagName("p")[0];
-    p.innerHTML = result?.body;
+    p.innerHTML = result;
   }
 }
 
-const getBotResponse = async () => {
+const getBotResponse = async (message) => {
   try {
-    const url =
-      "https://theogbrand-testing--serverless-message-sender-fastapi-app.modal.run/reply/fbmessenger";
-
-    const data = {
-      customerPsid: "123456",
-      merchantPsid: "100451723148691",
-      chatMessage: "Hello",
-    };
-
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    };
-
-    const response = await fetch(url, requestOptions);
-    return response.json();
+    const rawResponse = await fetch('https://remarkable-functional-church.glitch.me/get-response?query=${message}', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({})
+  });
+  const content = await rawResponse.json();
+  return content?.data;
   } catch (err) {
     return {};
   }
